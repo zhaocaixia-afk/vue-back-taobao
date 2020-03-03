@@ -1,21 +1,21 @@
 <template>
-  <el-menu background-color="#545c64" text-color="#fff">
-    <el-submenu :index="item.path" v-for="(item, index) in hasChildren" :key="index">
+  <el-menu background-color="#545c64" text-color="#fff" unique-opened>
+    <el-menu-item :index="item.path" v-for="item in noChildren" :key="item.path" @click="clickMenu(item)">
+      <i :class="`el-icon-${item.icon}`"></i>
+      <span slot="title">{{ item.label }}</span>
+    </el-menu-item>
+    <el-submenu :index="item.path" v-for="item in hasChildren" :key="item.path">
       <template slot="title">
         <i :class="`el-icon-${item.icon}`"></i>
         <span>{{ item.label }}</span>
       </template>
-      <el-menu-item :index="itemChild.path" v-for="(itemChild, indexChild) in item.children" :key="indexChild">
+      <el-menu-item :index="itemChild.path" v-for="(itemChild, indexChild) in item.children" :key="indexChild" @click="clickMenu(itemChild)">
         <template slot="title">
           <i :class="`el-icon-${itemChild.icon}`"></i>
           <span>{{ itemChild.label }}</span>
         </template>
       </el-menu-item>
     </el-submenu>
-    <el-menu-item index="2" v-for="(item, index) in noChildren" :key="index">
-      <i :class="`el-icon-${item.icon}`"></i>
-      <span slot="title">{{ item.label }}</span>
-    </el-menu-item>
   </el-menu>
 </template>
 <script>
@@ -24,21 +24,34 @@ export default {
   data() {
     return {
       asideMenu: [
-        { path: '/', label: '首页', icon: 's-home' },
-        { path: '/video', label: '视频管理', icon: 'video-play' },
+        { path: '/', label: '首页', icon: 's-home', name: 'home' },
+        {
+          path: '/video',
+          label: '视频管理',
+          icon: 'video-play',
+          name: 'video'
+        },
         {
           path: '/user',
           label: '用户管理',
           icon: 'user',
-          children: [{ path: '/page1', label: '页面1', icon: 'setting' }]
+          name: 'user'
         },
         {
           path: '/other',
           label: '其它',
           icon: 'more',
-          children: [{ path: '/page1', label: '页面1', icon: 'setting' }]
+          children: [
+            { path: '/page1', label: '页面1', icon: 'setting', name: 'page1' },
+            { path: '/page2', label: '页面2', icon: 'setting', name: 'page2' }
+          ]
         }
       ]
+    }
+  },
+  methods: {
+    clickMenu(item) {
+      this.$store.commit('selectMenu', item)
     }
   },
   computed: {
@@ -54,5 +67,6 @@ export default {
 <style scoped lang="scss">
 .el-menu {
   border-right: none;
+  height: 100%;
 }
 </style>
