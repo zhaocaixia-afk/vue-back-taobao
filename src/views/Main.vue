@@ -7,7 +7,10 @@
       <el-header>
         <common-header />
       </el-header>
-      <el-main></el-main>
+      <common-tabs />
+      <el-main>
+        <router-view />
+      </el-main>
     </el-main>
   </el-container>
 </template>
@@ -15,12 +18,14 @@
 <script>
 import CommonAside from 'components/common/CommonAside'
 import CommonHeader from 'components/common/CommonHeader'
+import CommonTabs from 'components/common/CommonTabs'
 
 export default {
   name: 'CommonAsideName',
   components: {
     CommonAside,
-    CommonHeader
+    CommonHeader,
+    CommonTabs
   }
 }
 </script>
