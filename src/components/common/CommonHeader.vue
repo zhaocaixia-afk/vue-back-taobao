@@ -1,7 +1,7 @@
 <template>
   <header>
     <div class="l-content">
-      <el-button type="primary" icon="el-icon-edit" size="mini"></el-button>
+      <el-button type="primary" icon="el-icon-edit" @click="changCollapse"></el-button>
       <el-breadcrumb separator="/">
         <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
         <el-breadcrumb-item :to="{ path: current.path }" v-if="current.path">{{ current.label }}</el-breadcrumb-item>
@@ -18,6 +18,7 @@
     </div>
   </header>
 </template>
+
 <script>
 import { mapState } from 'vuex'
 
@@ -26,9 +27,16 @@ export default {
     ...mapState({
       current: state => state.tab.currentMenu
     })
+  },
+  methods: {
+    changCollapse() {
+      // this.$bus.$emit('changeCollapse')
+      this.$emit('changeCollapse')
+    }
   }
 }
 </script>
+
 <style scoped lang="scss">
 header {
   width: 100%;

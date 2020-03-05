@@ -14,6 +14,7 @@
     </el-tag>
   </div>
 </template>
+
 <script>
 import { mapState } from 'vuex'
 export default {
@@ -36,6 +37,7 @@ export default {
   }
 }
 </script>
+
 <style scoped lang="scss">
 .tabs {
   padding: 10px;

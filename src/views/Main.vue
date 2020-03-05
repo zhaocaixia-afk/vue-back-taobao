@@ -1,11 +1,11 @@
 <template>
   <el-container style="height:100%;">
-    <el-aside width="200px">
-      <common-aside />
+    <el-aside width="auto">
+      <common-aside ref="commonAside" />
     </el-aside>
     <el-main>
       <el-header>
-        <common-header />
+        <common-header @changeCollapse="changeCollapse" />
       </el-header>
       <common-tabs />
       <el-main>
@@ -22,6 +22,11 @@ import CommonTabs from 'components/common/CommonTabs'
 
 export default {
   name: 'CommonAsideName',
+  methods: {
+    changeCollapse() {
+      this.$refs.commonAside.isCollapse = !this.$refs.commonAside.isCollapse
+    }
+  },
   components: {
     CommonAside,
     CommonHeader,

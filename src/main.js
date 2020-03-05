@@ -9,6 +9,10 @@ import 'normalize.css/normalize.css'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI)
+// 3.事件总线(非父子组件之间传值)
+Vue.prototype.$bus = new Vue()
+// 4.模拟数据
+import './mock/index'
 
 Vue.config.productionTip = false
 

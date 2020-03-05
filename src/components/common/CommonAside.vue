@@ -1,5 +1,5 @@
 <template>
-  <el-menu background-color="#545c64" text-color="#fff" unique-opened>
+  <el-menu background-color="#545c64" text-color="#fff" unique-opened class="el-menu-vertical-demo" :collapse="isCollapse">
     <el-menu-item :index="item.path" v-for="item in noChildren" :key="item.path" @click="clickMenu(item)">
       <i :class="`el-icon-${item.icon}`"></i>
       <span slot="title">{{ item.label }}</span>
@@ -18,6 +18,7 @@
     </el-submenu>
   </el-menu>
 </template>
+
 <script>
 export default {
   name: 'CommonAside',
@@ -46,13 +47,20 @@ export default {
             { path: '/page2', label: '页面2', icon: 'setting', name: 'page2' }
           ]
         }
-      ]
+      ],
+      isCollapse: false
     }
+  },
+  mounted() {
+    // this.$bus.$on('itemImageLoad', this.itemImgListener)
   },
   methods: {
     clickMenu(item) {
       this.$router.push({ name: item.name })
       this.$store.commit('selectMenu', item)
+    },
+    changCollapse() {
+      this.$on('changCollapse')
     }
   },
   computed: {
@@ -65,9 +73,14 @@ export default {
   }
 }
 </script>
+
 <style scoped lang="scss">
 .el-menu {
   border-right: none;
   height: 100%;
+}
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 200px;
+  min-height: 400px;
 }
 </style>

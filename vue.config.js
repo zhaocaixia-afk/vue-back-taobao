@@ -15,6 +15,7 @@ module.exports = {
       .set('assets', resolve('./src/assets'))
       .set('common', resolve('./src/common'))
       .set('components', resolve('./src/components'))
+      .set('mock', resolve('./src/mock'))
       .set('network', resolve('./src/network'))
       .set('router', resolve('./src/router'))
       .set('store', resolve('./src/store'))
