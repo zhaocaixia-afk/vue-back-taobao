@@ -39,8 +39,10 @@ export default {
 
 <style scoped lang="scss">
 header {
+  background: #eee;
+  padding: 0 20px;
   width: 100%;
-  height: 100%;
+  height: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
