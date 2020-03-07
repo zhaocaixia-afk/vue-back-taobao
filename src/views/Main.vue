@@ -4,14 +4,17 @@
       <common-aside ref="commonAside" />
     </el-aside>
 
-    <el-main class="total-container">
-      <common-header @changeCollapse="changeCollapse" />
+    <el-container>
+      <el-header>
+        <common-header @changeCollapse="changeCollapse" />
+      </el-header>
+
       <common-tabs />
 
       <el-main class="link-container">
         <router-view />
       </el-main>
-    </el-main>
+    </el-container>
   </el-container>
 </template>
 
@@ -36,10 +39,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.total-container {
-  padding: 0;
-  .link-container {
-    padding: 10px;
-  }
+.el-header {
+  background-color: #eee;
 }
 </style>

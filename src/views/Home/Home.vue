@@ -15,14 +15,14 @@
         </div>
       </el-card>
       <el-card shadow="hover" class="left-bottom">
-        <el-table :data="videoData" stripe>
+        <el-table :data="tableData" stripe>
           <el-table-column show-overflow-tooltip v-for="(item, index) in tableLabel" :key="index" :prop="index" :label="item"></el-table-column>
         </el-table>
       </el-card>
     </el-col>
     <el-col :span="16" class="right">
       <div class="right-top">
-        <el-card shadow="hover" v-for="(item, index) in countData" :key="index">
+        <el-card shadow="hover" v-for="(item, index) in countData" :key="index" :body-style="{ display: 'flex', padding: 0 }">
           <div class="bgColor" :style="{ background: item.color }">
             <i :class="`el-icon-${item.icon}`"></i>
           </div>
@@ -80,12 +80,12 @@ export default {
           color: '#5ab1ef'
         }
       ],
-      videoData: [],
+      tableData: [],
       tableLabel: {
         name: '课程',
         todayBuy: '今日购买',
-        totalBuy: '总购买',
-        monthBuy: '本月购买'
+        monthBuy: '本月购买',
+        totalBuy: '总购买'
       }
     }
   },
@@ -96,9 +96,8 @@ export default {
     async _getHomeData() {
       const result = await getHomeData()
       if (result.code === 20000) {
-        this.videoData = result.data.videoData
+        this.tableData = result.data.tableData
       }
-      // console.log(this.videoData)
     }
   }
 }
@@ -120,7 +119,7 @@ export default {
           border-radius: 50%;
           margin-right: 20px;
         }
-        .userinfo {
+        &info {
           .name {
             font-size: 20px;
           }
@@ -143,7 +142,6 @@ export default {
       }
     }
     .left-bottom {
-      // height: 522px;
       margin-top: 20px;
     }
   }
@@ -152,35 +150,28 @@ export default {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      /deep/ .el-card {
+      .el-card {
         width: 32%;
-        height: 60px;
         margin-bottom: 10px;
-        .el-card__body {
-          padding: 0;
-          height: 100%;
-          display: flex;
-          align-items: center;
-          .bgColor {
-            width: 60px;
-            height: 100%;
+        height: 60px;
+        .bgColor {
+          width: 60px;
+          text-align: center;
+          i {
+            line-height: 60px;
             text-align: center;
-            i {
-              line-height: 60px;
-              text-align: center;
-              font-size: 32px;
-            }
+            font-size: 32px;
           }
-          .textContainer {
-            margin-left: 20px;
-            .money {
-              font-size: 22px;
-              margin-bottom: 5px;
-            }
-            .text {
-              font-size: 12px;
-              color: #999;
-            }
+        }
+        .textContainer {
+          margin-left: 20px;
+          .money {
+            font-size: 22px;
+            margin: 5px 0;
+          }
+          .text {
+            font-size: 12px;
+            color: #999;
           }
         }
       }

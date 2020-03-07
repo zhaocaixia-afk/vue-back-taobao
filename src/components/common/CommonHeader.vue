@@ -1,7 +1,7 @@
 <template>
   <header>
     <div class="l-content">
-      <el-button type="primary" icon="el-icon-edit" @click="changCollapse"></el-button>
+      <el-button plain icon="el-icon-menu" @click="changCollapse"></el-button>
       <el-breadcrumb separator="/">
         <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
         <el-breadcrumb-item :to="{ path: current.path }" v-if="current.path">{{ current.label }}</el-breadcrumb-item>
@@ -39,10 +39,7 @@ export default {
 
 <style scoped lang="scss">
 header {
-  background: #eee;
-  padding: 0 20px;
-  width: 100%;
-  height: 60px;
+  height: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -50,7 +47,7 @@ header {
     display: flex;
     align-items: center;
     .el-button {
-      margin-right: 15px;
+      margin-right: 20px;
     }
   }
   .r-content {

@@ -40,9 +40,9 @@ export default {
 
 <style scoped lang="scss">
 .tabs {
-  padding: 10px;
+  padding: 20px;
   .el-tag {
-    margin-right: 10px;
+    margin-right: 15px;
     cursor: pointer;
   }
 }
