@@ -1,11 +1,10 @@
 import axios from 'axios'
 
 export function request(config) {
-  // const data = config.data || {}
-  // console.log(config.params)
-
+  // console.log(config)
   const instance = axios.create({
-    // data: data
+    // method: config.method || 'get',
+    timeout: 3000
   })
 
   instance.interceptors.request.use(

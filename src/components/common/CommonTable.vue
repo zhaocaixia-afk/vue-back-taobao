@@ -1,6 +1,6 @@
 <template>
   <div class="common-table">
-    <el-table :data="tableData" style="width: 100%" stripe>
+    <el-table :data="tableData" style="width: 100%" stripe v-loading="config.loading">
       <el-table-column label="序号" width="85">
         <template slot-scope="scope">
           <span>{{ (config.page - 1) * 20 + scope.$index + 1 }}</span>
@@ -22,6 +22,7 @@
     </el-pagination>
   </div>
 </template>
+
 <script>
 export default {
   name: 'CommonTable',
@@ -31,12 +32,17 @@ export default {
     config: Object
   },
   methods: {
-    handleEdit() {},
+    handleEdit(row) {
+      this.$emit('edit', row)
+    },
     handleDelete() {},
-    changePage() {}
+    changePage(page) {
+      this.$emit('changePage', page)
+    }
   }
 }
 </script>
+
 <style scoped lang="scss">
 .common-table {
   position: relative;

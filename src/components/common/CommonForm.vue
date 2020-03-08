@@ -6,6 +6,7 @@
       <el-select v-model="form[item.model]" :placeholder="`请输入${item.label}`" v-if="item.type === 'select'">
         <el-option v-for="item in item.opts" :key="item.value" :label="item.label" :value="item.value"></el-option>
       </el-select>
+      <el-date-picker v-model="form[item.model]" :placeholder="`请输入${item.label}`" v-if="item.type === 'date'"></el-date-picker>
     </el-form-item>
     <el-form-item>
       <slot></slot>
