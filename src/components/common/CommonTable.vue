@@ -35,7 +35,9 @@ export default {
     handleEdit(row) {
       this.$emit('edit', row)
     },
-    handleDelete() {},
+    handleDelete(row) {
+      this.$emit('del', row)
+    },
     changePage(page) {
       this.$emit('changePage', page)
     }

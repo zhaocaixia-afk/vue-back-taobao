@@ -22,3 +22,10 @@ export function addUser(data) {
     data
   })
 }
+
+export function deleteUser(params) {
+  return request({
+    url: '/user/del',
+    params
+  })
+}

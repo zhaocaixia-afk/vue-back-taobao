@@ -16,13 +16,13 @@
       </common-form>
     </div>
     <div class="manage-content">
-      <common-table :tableData="tableData" :tableLabel="tableLabel" :config="config" @changePage="changePage" @edit="editUser"></common-table>
+      <common-table :tableData="tableData" :tableLabel="tableLabel" :config="config" @changePage="changePage" @edit="editUser" @del="deleteUser"></common-table>
     </div>
   </div>
 </template>
 
 <script>
-import { getUserList, editUser, addUser } from 'network/user'
+import { getUserList, editUser, addUser, deleteUser } from 'network/user'
 
 import CommonForm from 'components/common/CommonForm'
 import CommonTable from 'components/common/CommonTable'
@@ -94,7 +94,7 @@ export default {
       }
     }
   },
-  mounted() {
+  created() {
     this._getUserList()
   },
   methods: {
@@ -149,6 +149,31 @@ export default {
           }
         })
       }
+    },
+    // 6.删除
+    deleteUser(row) {
+      this.$confirm('此操作将永久删除该用户, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      })
+        .then(() => {
+          let id = row.id
+          deleteUser({ id }).then(res => {
+            if (res.code === 20000) {
+              this.$message({
+                type: 'success',
+                message: res.message
+              })
+            }
+          })
+        })
+        .catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          })
+        })
     }
   },
   components: {
